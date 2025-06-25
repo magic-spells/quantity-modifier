@@ -1,174 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quantity Modifier Demo</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    
-    .demo-section {
-      margin-bottom: 2rem;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-    
-    .demo-section h3 {
-      margin-top: 0;
-    }
-    
-    quantity-modifier {
-      display: inline-block;
-      margin: 0.5rem;
-    }
-    
-    .quantity-modifier {
-      display: flex;
-      align-items: center;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    
-    .quantity-modifier button {
-      background: #f8f9fa;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .quantity-modifier button:hover {
-      background: #e9ecef;
-    }
-    
-    .quantity-modifier button:active {
-      background: #dee2e6;
-    }
-    
-    .quantity-modifier button svg {
-      width: 12px;
-      height: 12px;
-      color: #666;
-    }
-    
-    .quantity-modifier input {
-      border: none;
-      padding: 8px 12px;
-      text-align: center;
-      width: 60px;
-      font-size: 14px;
-      -moz-appearance: textfield;
-    }
-    
-    .quantity-modifier input::-webkit-outer-spin-button,
-    .quantity-modifier input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    
-    .quantity-modifier input:focus {
-      outline: none;
-      background: #f8f9fa;
-    }
-    
-    .event-log {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 4px;
-      font-family: monospace;
-      font-size: 12px;
-      max-height: 200px;
-      overflow-y: auto;
-      margin-top: 1rem;
-    }
-    
-    .code-example {
-      background: #f8f9fa;
-      padding: 1rem;
-      border-radius: 4px;
-      font-family: monospace;
-      font-size: 14px;
-      margin-top: 1rem;
-    }
-  </style>
-</head>
-<body>
-  <h1>Quantity Modifier Demo</h1>
-  
-  <div class="demo-section">
-    <h3>Default Settings</h3>
-    <p>Default min=1, max=99, value=1</p>
-    <quantity-modifier></quantity-modifier>
-    <div class="code-example">&lt;quantity-modifier&gt;&lt;/quantity-modifier&gt;</div>
-  </div>
-  
-  <div class="demo-section">
-    <h3>Custom Min/Max</h3>
-    <p>Min=5, Max=15, Value=10</p>
-    <quantity-modifier min="5" max="15" value="10"></quantity-modifier>
-    <div class="code-example">&lt;quantity-modifier min="5" max="15" value="10"&gt;&lt;/quantity-modifier&gt;</div>
-  </div>
-  
-  <div class="demo-section">
-    <h3>Large Range</h3>
-    <p>Min=0, Max=1000, Value=100</p>
-    <quantity-modifier min="0" max="1000" value="100"></quantity-modifier>
-    <div class="code-example">&lt;quantity-modifier min="0" max="1000" value="100"&gt;&lt;/quantity-modifier&gt;</div>
-  </div>
-  
-  <div class="demo-section">
-    <h3>Multiple Instances</h3>
-    <p>Testing multiple components on the same page:</p>
-    <quantity-modifier min="1" max="5" value="2"></quantity-modifier>
-    <quantity-modifier min="10" max="20" value="15"></quantity-modifier>
-    <quantity-modifier min="1" max="3" value="1"></quantity-modifier>
-  </div>
-  
-  <div class="demo-section">
-    <h3>Event Logging</h3>
-    <p>Watch the console or the log below for quantity-modifier:change events:</p>
-    <quantity-modifier min="1" max="10" value="5" id="event-demo"></quantity-modifier>
-    <div class="event-log" id="eventLog">
-      Event log will appear here...
-    </div>
-  </div>
-
-  <script type="module" src="quantity-modifier.esm.js"></script>
-  <script>
-    // Event logging demo
-    const eventDemo = document.getElementById('event-demo');
-    const eventLog = document.getElementById('eventLog');
-    
-    eventDemo.addEventListener('quantity-modifier:change', (e) => {
-      const timestamp = new Date().toLocaleTimeString();
-      const logEntry = `[${timestamp}] quantity-modifier:change: ${e.detail.value}`;
-      console.log(logEntry);
-      
-      // Add to visual log
-      const div = document.createElement('div');
-      div.textContent = logEntry;
-      eventLog.appendChild(div);
-      eventLog.scrollTop = eventLog.scrollHeight;
-    });
-    
-    // Clear log initially
-    eventLog.innerHTML = '';
-    
-    // Listen to all quantity modifiers for console logging
-    document.addEventListener('quantity-modifier:change', (e) => {
-      if (e.target !== eventDemo) {
-        console.log('Quantity changed:', e.detail.value, 'from element:', e.target);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantity Modifier Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 0 1rem;
       }
-    });
-  </script>
-</body>
+
+      .demo-section {
+        margin-bottom: 2rem;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .demo-section h3 {
+        margin-top: 0;
+      }
+
+      quantity-modifier {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 0.5rem;
+      }
+
+      quantity-modifier button {
+        background: #f8f9fa;
+        border: none;
+        padding: 10px 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      quantity-modifier button:hover {
+        background: #e9ecef;
+      }
+
+      quantity-modifier button:active {
+        background: #dee2e6;
+      }
+
+      quantity-modifier button svg {
+        width: 12px;
+        height: 12px;
+        color: #666;
+      }
+
+      quantity-modifier input {
+        border: none;
+        padding: 8px 12px;
+        text-align: center;
+        width: 60px;
+        font-size: 14px;
+        -moz-appearance: textfield;
+      }
+
+      quantity-modifier input::-webkit-outer-spin-button,
+      quantity-modifier input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      quantity-modifier input:focus {
+        outline: none;
+        background: #f8f9fa;
+      }
+
+      .event-log {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 12px;
+        max-height: 200px;
+        overflow-y: auto;
+        margin-top: 1rem;
+      }
+
+      .code-example {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 14px;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Quantity Modifier Demo</h1>
+
+    <div class="demo-section">
+      <h3>Default Settings</h3>
+      <p>Default min=1, max=99, value=1</p>
+      <quantity-modifier></quantity-modifier>
+      <div class="code-example">&lt;quantity-modifier&gt;&lt;/quantity-modifier&gt;</div>
+    </div>
+
+    <div class="demo-section">
+      <h3>Custom Min/Max</h3>
+      <p>Min=5, Max=15, Value=10</p>
+      <quantity-modifier min="5" max="15" value="10"></quantity-modifier>
+      <div class="code-example">
+        &lt;quantity-modifier min="5" max="15" value="10"&gt;&lt;/quantity-modifier&gt;
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>Large Range</h3>
+      <p>Min=0, Max=1000, Value=100</p>
+      <quantity-modifier min="0" max="1000" value="100"></quantity-modifier>
+      <div class="code-example">
+        &lt;quantity-modifier min="0" max="1000" value="100"&gt;&lt;/quantity-modifier&gt;
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h3>Multiple Instances</h3>
+      <p>Testing multiple components on the same page:</p>
+      <quantity-modifier min="1" max="5" value="2"></quantity-modifier>
+      <quantity-modifier min="10" max="20" value="15"></quantity-modifier>
+      <quantity-modifier min="1" max="3" value="1"></quantity-modifier>
+    </div>
+
+    <div class="demo-section">
+      <h3>Event Logging</h3>
+      <p>Watch the console or the log below for quantity-modifier:change events:</p>
+      <quantity-modifier min="1" max="10" value="5" id="event-demo"></quantity-modifier>
+      <div class="event-log" id="eventLog">Event log will appear here...</div>
+    </div>
+
+    <script type="module" src="quantity-modifier.esm.js"></script>
+    <script>
+      // Event logging demo
+      const eventDemo = document.getElementById('event-demo');
+      const eventLog = document.getElementById('eventLog');
+
+      eventDemo.addEventListener('quantity-modifier:change', (e) => {
+        const timestamp = new Date().toLocaleTimeString();
+        const logEntry = `[${timestamp}] quantity-modifier:change: ${e.detail.value}`;
+        console.log(logEntry);
+
+        // Add to visual log
+        const div = document.createElement('div');
+        div.textContent = logEntry;
+        eventLog.appendChild(div);
+        eventLog.scrollTop = eventLog.scrollHeight;
+      });
+
+      // Clear log initially
+      eventLog.innerHTML = '';
+
+      // Listen to all quantity modifiers for console logging
+      document.addEventListener('quantity-modifier:change', (e) => {
+        if (e.target !== eventDemo) {
+          console.log('Quantity changed:', e.detail.value, 'from element:', e.target);
+        }
+      });
+    </script>
+  </body>
 </html>

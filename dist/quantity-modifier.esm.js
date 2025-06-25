@@ -47,21 +47,19 @@ class QuantityModifier extends HTMLElement {
     const value = this.value;
 
     this.innerHTML = `
-      <div class="quantity-modifier">
-        <button data-action-decrement type="button">
-          <svg class="svg-decrement" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-            <title>decrement</title>
-            <path fill="currentColor" d="M368 224H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h352c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path>
-          </svg>
-        </button>
-        <input type="number" data-quantity-modifier-field value="${value}" min="${min}" max="${max}">
-        <button data-action-increment type="button">
-          <svg class="svg-increment" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-            <title>increment</title>
-            <path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path>
-          </svg>
-        </button>
-      </div>
+      <button data-action-decrement type="button">
+        <svg class="svg-decrement" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+          <title>decrement</title>
+          <path fill="currentColor" d="M368 224H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h352c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path>
+        </svg>
+      </button>
+      <input type="number" data-quantity-modifier-field value="${value}" min="${min}" max="${max}">
+      <button data-action-increment type="button">
+        <svg class="svg-increment" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+          <title>increment</title>
+          <path fill="currentColor" d="M368 224H224V80c0-8.84-7.16-16-16-16h-32c-8.84 0-16 7.16-16 16v144H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h144v144c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V288h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16z"></path>
+        </svg>
+      </button>
     `;
   }
 
