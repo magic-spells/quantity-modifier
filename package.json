@@ -1,66 +1,66 @@
 {
-  "name": "@magic-spells/quantity-modifier",
-  "version": "0.1.0",
-  "description": "Quantity modifier web component.",
-  "author": "Cory Schulz",
-  "license": "MIT",
-  "type": "module",
-  "main": "dist/quantity-modifier.cjs.js",
-  "module": "dist/quantity-modifier.esm.js",
-  "unpkg": "dist/quantity-modifier.min.js",
-  "exports": {
-    ".": {
-      "import": "./dist/quantity-modifier.esm.js",
-      "require": "./dist/quantity-modifier.cjs.js",
-      "default": "./dist/quantity-modifier.esm.js"
-    }
-  },
-  "sideEffects": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/magic-spells/quantity-modifier"
-  },
-  "homepage": "https://github.com/magic-spells/quantity-modifier#readme",
-  "bugs": {
-    "url": "https://github.com/magic-spells/quantity-modifier/issues"
-  },
-  "keywords": [
-    "quantity-modifier",
-    "web-components",
-    "quantity-input",
-    "e-commerce",
-    "custom-elements"
-  ],
-  "files": [
-    "dist/",
-    "src/"
-  ],
-  "scripts": {
-    "build": "rollup -c",
-    "lint": "eslint src/ rollup.config.mjs",
-    "format": "prettier --write .",
-    "prepublishOnly": "npm run build",
-    "serve": "rollup -c --watch",
-    "dev": "rollup -c --watch"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "browserslist": [
-    "last 2 versions",
-    "not dead",
-    "not ie <= 11"
-  ],
-  "devDependencies": {
-    "@eslint/js": "^8.57.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
-    "eslint": "^8.0.0",
-    "globals": "^13.24.0",
-    "prettier": "^3.3.3",
-    "rollup": "^3.0.0",
-    "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-serve": "^1.1.1"
-  }
+	"name": "@magic-spells/quantity-modifier",
+	"version": "0.1.1",
+	"description": "Quantity modifier web component.",
+	"author": "Cory Schulz",
+	"license": "MIT",
+	"type": "module",
+	"main": "dist/quantity-modifier.cjs.js",
+	"module": "dist/quantity-modifier.esm.js",
+	"unpkg": "dist/quantity-modifier.min.js",
+	"exports": {
+		".": {
+			"import": "./dist/quantity-modifier.esm.js",
+			"require": "./dist/quantity-modifier.cjs.js",
+			"default": "./dist/quantity-modifier.esm.js"
+		}
+	},
+	"sideEffects": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/magic-spells/quantity-modifier"
+	},
+	"homepage": "https://github.com/magic-spells/quantity-modifier#readme",
+	"bugs": {
+		"url": "https://github.com/magic-spells/quantity-modifier/issues"
+	},
+	"keywords": [
+		"quantity-modifier",
+		"web-components",
+		"quantity-input",
+		"e-commerce",
+		"custom-elements"
+	],
+	"files": [
+		"dist/",
+		"src/"
+	],
+	"scripts": {
+		"build": "rollup -c",
+		"lint": "eslint src/ rollup.config.mjs",
+		"format": "prettier --write .",
+		"prepublishOnly": "npm run build",
+		"serve": "rollup -c --watch",
+		"dev": "rollup -c --watch"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
+	"browserslist": [
+		"last 2 versions",
+		"not dead",
+		"not ie <= 11"
+	],
+	"devDependencies": {
+		"@eslint/js": "^8.57.0",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-terser": "^0.4.4",
+		"eslint": "^8.0.0",
+		"globals": "^13.24.0",
+		"prettier": "^3.3.3",
+		"rollup": "^3.0.0",
+		"rollup-plugin-copy": "^3.5.0",
+		"rollup-plugin-serve": "^1.1.1"
+	}
 }

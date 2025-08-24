@@ -67,9 +67,9 @@ The component emits `quantity-modifier:change` events when the value changes, al
 
 ### Events
 
-| Event Name                 | Description                        | Detail Properties |
-| -------------------------- | ---------------------------------- | ----------------- |
-| `quantity-modifier:change` | Triggered when quantity changes    | `{ value }`       |
+| Event Name                 | Description                     | Detail Properties |
+| -------------------------- | ------------------------------- | ----------------- |
+| `quantity-modifier:change` | Triggered when quantity changes | `{ value }`       |
 
 Example:
 
@@ -90,33 +90,33 @@ The component provides complete styling control. Style the content elements howe
 ```css
 /* Basic styling */
 quantity-modifier {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  overflow: hidden;
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	overflow: hidden;
 }
 
 quantity-modifier button {
-  background: #f8f9fa;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	background: #f8f9fa;
+	border: none;
+	padding: 8px 12px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 quantity-modifier button:hover {
-  background: #e9ecef;
+	background: #e9ecef;
 }
 
 quantity-modifier input {
-  border: none;
-  padding: 8px 12px;
-  text-align: center;
-  width: 60px;
-  font-size: 14px;
+	border: none;
+	padding: 8px 12px;
+	text-align: center;
+	width: 60px;
+	font-size: 14px;
 }
 ```
 
@@ -125,7 +125,7 @@ quantity-modifier input {
 #### Properties
 
 - `min`: Get/set the minimum allowed value
-- `max`: Get/set the maximum allowed value  
+- `max`: Get/set the maximum allowed value
 - `value`: Get/set the current quantity value
 
 #### Events
@@ -133,6 +133,7 @@ quantity-modifier input {
 The component emits custom events that bubble up for parent components to handle:
 
 **`quantity-modifier:change`**
+
 - Triggered when quantity value changes via buttons or direct input
 - `event.detail`: `{ value }`
 
@@ -148,12 +149,12 @@ quantityModifier.max = 20;
 
 // Get current values
 console.log(quantityModifier.value); // 5
-console.log(quantityModifier.min);   // 1
-console.log(quantityModifier.max);   // 20
+console.log(quantityModifier.min); // 1
+console.log(quantityModifier.max); // 20
 
 // Listen for changes
 document.addEventListener('quantity-modifier:change', (e) => {
-  console.log('Quantity changed to:', e.detail.value);
+	console.log('Quantity changed to:', e.detail.value);
 });
 ```
 
@@ -164,38 +165,37 @@ document.addEventListener('quantity-modifier:change', (e) => {
 ```javascript
 // Example cart quantity management
 class CartManager {
-  constructor() {
-    document.addEventListener('quantity-modifier:change', this.handleQuantityChange.bind(this));
-  }
-  
-  async handleQuantityChange(e) {
-    const newQuantity = e.detail.value;
-    const cartItem = e.target.closest('[data-line-item-key]');
-    const lineItemKey = cartItem.dataset.lineItemKey;
-    
-    try {
-      // Update Shopify cart
-      const response = await fetch('/cart/change.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          id: lineItemKey, 
-          quantity: newQuantity 
-        })
-      });
-      
-      const cart = await response.json();
-      this.updateCartDisplay(cart);
-      
-    } catch (error) {
-      console.error('Failed to update cart:', error);
-      // Optionally revert the quantity modifier to previous value
-    }
-  }
-  
-  updateCartDisplay(cart) {
-    // Update cart totals, item counts, etc.
-  }
+	constructor() {
+		document.addEventListener('quantity-modifier:change', this.handleQuantityChange.bind(this));
+	}
+
+	async handleQuantityChange(e) {
+		const newQuantity = e.detail.value;
+		const cartItem = e.target.closest('[data-line-item-key]');
+		const lineItemKey = cartItem.dataset.lineItemKey;
+
+		try {
+			// Update Shopify cart
+			const response = await fetch('/cart/change.js', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					id: lineItemKey,
+					quantity: newQuantity,
+				}),
+			});
+
+			const cart = await response.json();
+			this.updateCartDisplay(cart);
+		} catch (error) {
+			console.error('Failed to update cart:', error);
+			// Optionally revert the quantity modifier to previous value
+		}
+	}
+
+	updateCartDisplay(cart) {
+		// Update cart totals, item counts, etc.
+	}
 }
 
 new CartManager();
@@ -205,18 +205,14 @@ new CartManager();
 
 ```html
 <div data-line-item-key="40123456789:abc123">
-  <div class="product-info">
-    <h4>Awesome T-Shirt</h4>
-    <div class="price">$29.99</div>
-  </div>
-  
-  <quantity-modifier 
-    min="1" 
-    max="10" 
-    value="2">
-  </quantity-modifier>
-  
-  <div class="line-total">$59.98</div>
+	<div class="product-info">
+		<h4>Awesome T-Shirt</h4>
+		<div class="price">$29.99</div>
+	</div>
+
+	<quantity-modifier min="1" max="10" value="2"> </quantity-modifier>
+
+	<div class="line-total">$59.98</div>
 </div>
 ```
 
@@ -226,18 +222,18 @@ new CartManager();
 import '@magic-spells/quantity-modifier';
 
 function ProductQuantity({ min = 1, max = 99, value = 1, onChange }) {
-  const handleQuantityChange = (e) => {
-    onChange(e.detail.value);
-  };
-  
-  return (
-    <quantity-modifier
-      min={min}
-      max={max}
-      value={value}
-      onQuantity-modifierChange={handleQuantityChange}
-    />
-  );
+	const handleQuantityChange = (e) => {
+		onChange(e.detail.value);
+	};
+
+	return (
+		<quantity-modifier
+			min={min}
+			max={max}
+			value={value}
+			onQuantity-modifierChange={handleQuantityChange}
+		/>
+	);
 }
 ```
 
@@ -245,36 +241,35 @@ function ProductQuantity({ min = 1, max = 99, value = 1, onChange }) {
 
 ```vue
 <template>
-  <quantity-modifier
-    :min="min"
-    :max="max" 
-    :value="quantity"
-    @quantity-modifier:change="handleQuantityChange"
-  />
+	<quantity-modifier
+		:min="min"
+		:max="max"
+		:value="quantity"
+		@quantity-modifier:change="handleQuantityChange" />
 </template>
 
 <script>
 import '@magic-spells/quantity-modifier';
 
 export default {
-  props: {
-    min: { type: Number, default: 1 },
-    max: { type: Number, default: 99 },
-    quantity: { type: Number, default: 1 }
-  },
-  methods: {
-    handleQuantityChange(e) {
-      this.$emit('update:quantity', e.detail.value);
-    }
-  }
-}
+	props: {
+		min: { type: Number, default: 1 },
+		max: { type: Number, default: 99 },
+		quantity: { type: Number, default: 1 },
+	},
+	methods: {
+		handleQuantityChange(e) {
+			this.$emit('update:quantity', e.detail.value);
+		},
+	},
+};
 </script>
 ```
 
 ## Browser Support
 
 - Chrome 54+
-- Firefox 63+ 
+- Firefox 63+
 - Safari 10.1+
 - Edge 79+
 
