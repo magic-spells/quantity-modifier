@@ -66,9 +66,10 @@ class QuantityModifier extends HTMLElement {
     return parseInt(this.getAttribute('min')) || 1;
   }
 
-  // Get maximum value allowed, defaults to 99
+  // Get maximum value allowed, no default if not set
   get max() {
-    return parseInt(this.getAttribute('max')) || 99;
+    const maxAttr = this.getAttribute('max');
+    return maxAttr !== null ? parseInt(maxAttr) : null;
   }
 
   // Get current value, defaults to 1
@@ -96,7 +97,11 @@ class QuantityModifier extends HTMLElement {
     if (existingDecrement && existingIncrement && existingInput) {
       existingInput.value = value;
       existingInput.min = min;
-      existingInput.max = max;
+      if (max !== null) {
+        existingInput.max = max;
+      } else {
+        existingInput.removeAttribute('max');
+      }
       existingInput.type = 'number';
     } else {
       // if they don't exist, inject the template
@@ -112,7 +117,7 @@ class QuantityModifier extends HTMLElement {
           inputmode="numeric" 
           pattern="[0-9]*" 
           data-quantity-modifier-field 
-          value="${value}" min="${min}" max="${max}">
+          value="${value}" min="${min}"${max !== null ? ` max="${max}"` : ''}>
         <button data-action-increment type="button">
           <svg class="svg-increment" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <title>increment</title>
@@ -155,7 +160,8 @@ class QuantityModifier extends HTMLElement {
   // Handle increment button click, respects maximum value
   handleIncrement() {
     const currentValue = this.value;
-    const newValue = Math.min(currentValue + 1, this.max);
+    const max = this.max;
+    const newValue = max !== null ? Math.min(currentValue + 1, max) : currentValue + 1;
     this.updateValue(newValue);
   }
 
@@ -164,7 +170,10 @@ class QuantityModifier extends HTMLElement {
     const inputValue = parseInt(event.target.value);
 
     if (!isNaN(inputValue)) {
-      const clampedValue = Math.max(this.min, Math.min(inputValue, this.max));
+      const max = this.max;
+      const clampedValue = max !== null 
+        ? Math.max(this.min, Math.min(inputValue, max))
+        : Math.max(this.min, inputValue);
       // Update the DOM input if the value was clamped
       if (clampedValue !== inputValue) {
         event.target.value = clampedValue;
@@ -188,7 +197,12 @@ class QuantityModifier extends HTMLElement {
     if (input) {
       input.value = this.value;
       input.min = this.min;
-      input.max = this.max;
+      const max = this.max;
+      if (max !== null) {
+        input.max = max;
+      } else {
+        input.removeAttribute('max');
+      }
     }
   }
 
