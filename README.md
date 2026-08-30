@@ -1,3 +1,5 @@
+This is deprecated. Use [Quantity Input](https://github.com/magic-spells/quantity-input) instead.
+
 # Quantity Modifier Web Component
 
 A professional, highly-customizable Web Component for creating intuitive quantity modification controls in e-commerce applications. Features increment/decrement buttons with an input field, perfect for shopping carts, product quantities, and any numeric input scenarios.
